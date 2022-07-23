@@ -7,7 +7,7 @@ router = APIRouter(prefix="/users")
 
 @router.post("/", tags=["users"])
 async def create_user():
-    data_user_dummy = {"name": "pedro dos", "age": 30}
+    data_user_dummy = {"name": "pedro tres", "age": 30}
     repository = UsersRepository()
     await repository.configure()
     id = await repository.create_user(data_user_dummy)
