@@ -3,7 +3,7 @@
 
 import motor.motor_asyncio
 from .singleton import SingletonMeta
-
+import json
 from ..common.log import configure_logging
 import logging
 
@@ -46,4 +46,6 @@ class UsersRepository(metaclass=SingletonMeta):
     async def create_user(self, data):
         result = await self.collection.insert_one(data)
         logger.info(f"create_user result -> {result.inserted_id}")
-        return result.inserted_id
+        logger.info(f"create_user result -> {data}")
+        data["_id"] = str(result.inserted_id)
+        return data
