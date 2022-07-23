@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 import motor.motor_asyncio
 from .singleton import SingletonMeta
 

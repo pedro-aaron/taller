@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 # info: https://refactoring.guru/es/design-patterns/singleton/python/example
 class SingletonMeta(type):
     """
