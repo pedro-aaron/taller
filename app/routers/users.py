@@ -1,12 +1,17 @@
 from fastapi import APIRouter
+from .users_repository import UsersRepository
+
 
 router = APIRouter(prefix="/users")
 
 
 @router.post("/", tags=["users"])
 async def create_user():
-    data_user_created = {"_id": "aksaskjdhfg", "name": "John", "age": 30}
-    return data_user_created
+    data_user_dummy = {"name": "pedro dos", "age": 30}
+    repository = UsersRepository()
+    await repository.configure()
+    id = await repository.create_user(data_user_dummy)
+    return {"id": str(id)}
 
 
 # @router.get("/users/", tags=["users"])
