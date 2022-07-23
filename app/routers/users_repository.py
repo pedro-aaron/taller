@@ -4,6 +4,12 @@
 import motor.motor_asyncio
 from .singleton import SingletonMeta
 
+from ..common.log import configure_logging
+import logging
+
+logger = logging.getLogger(__name__)
+# configure_logging("bitacora.log")
+
 
 class UsersRepository(metaclass=SingletonMeta):
     def __init__(self):
@@ -27,17 +33,17 @@ class UsersRepository(metaclass=SingletonMeta):
             )
 
             try:
-                print(await self.client.server_info())
+                logger.info(await self.client.server_info())
             except Exception:
-                print("Unable to connect to the server.")
+                logger.info("Unable to connect to the server.")
 
             self.db = self.client.users
             self.collection = self.db.users
-            print("UsersRepository configured")
+            logger.info("UsersRepository configured")
         else:
-            print("UsersRepository already configured")
+            logger.info("UsersRepository already configured")
 
     async def create_user(self, data):
         result = await self.collection.insert_one(data)
-        print(f"create_user result -> {result.inserted_id}")
+        logger.info(f"create_user result -> {result.inserted_id}")
         return result.inserted_id
