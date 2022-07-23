@@ -1,9 +1,9 @@
 from fastapi import APIRouter
 
-router = APIRouter()
+router = APIRouter(prefix="/users")
 
 
-@router.post("/users/", tags=["users"])
+@router.post("/", tags=["users"])
 async def create_user():
     data_user_created = {"_id": "aksaskjdhfg", "name": "John", "age": 30}
     return data_user_created
